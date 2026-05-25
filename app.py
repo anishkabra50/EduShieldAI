@@ -24,26 +24,47 @@ st.markdown("""
     
     /* Global Styles */
     .stApp {
-        background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #090d16 100%);
-        color: #f8fafc;
+        background: radial-gradient(circle at 50% 50%, #151828 0%, #090a10 100%);
+        color: #f1f5f9;
+    }
+    
+    /* Custom Scrollbar for Premium Feel */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: rgba(15, 23, 42, 0.3);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.18);
+    }
+    
+    /* Transparent Streamlit Default Header */
+    header[data-testid="stHeader"] {
+        background-color: transparent !important;
     }
     
     /* Sidebar styling with Glassmorphism */
     section[data-testid="stSidebar"] {
-        background-color: rgba(15, 23, 42, 0.75) !important;
-        backdrop-filter: blur(20px);
-        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background-color: rgba(9, 10, 16, 0.85) !important;
+        backdrop-filter: blur(25px);
+        border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
     
     /* Header Container styling - Premium Glassmorphic banner */
     .header-container {
-        background: rgba(30, 41, 59, 0.35);
-        backdrop-filter: blur(16px);
-        padding: 2.5rem;
-        border-radius: 20px;
-        margin-bottom: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+        backdrop-filter: blur(20px);
+        padding: 3rem 2.5rem;
+        border-radius: 24px;
+        margin-bottom: 2.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         position: relative;
         overflow: hidden;
     }
@@ -54,28 +75,44 @@ st.markdown("""
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 4px;
+        height: 5px;
         background: linear-gradient(90deg, #6366f1, #3b82f6, #10b981);
     }
     
     .header-title {
-        font-size: 2.75rem;
+        font-size: 3.25rem;
         font-weight: 800;
         margin: 0;
-        color: #ffffff;
-        letter-spacing: -0.025em;
+        background: linear-gradient(90deg, #ffffff 0%, #cbd5e1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.03em;
         display: flex;
         align-items: center;
-        gap: 12px;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        gap: 16px;
     }
     
     .header-subtitle {
-        font-size: 1.1rem;
-        color: #93c5fd;
-        margin-top: 0.5rem;
+        font-size: 1.15rem;
+        color: #94a3b8;
+        margin-top: 0.75rem;
         font-weight: 400;
-        letter-spacing: 0.025em;
+        letter-spacing: 0.01em;
+        max-width: 800px;
+        line-height: 1.6;
+    }
+    
+    /* File Uploader styling customisation */
+    div[data-testid="stFileUploader"] {
+        background-color: rgba(15, 23, 42, 0.3) !important;
+        border: 2px dashed rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        padding: 1.5rem !important;
+        transition: all 0.3s ease;
+    }
+    div[data-testid="stFileUploader"]:hover {
+        border-color: rgba(59, 130, 246, 0.4) !important;
+        background-color: rgba(15, 23, 42, 0.45) !important;
     }
     
     /* Dashboard Cards with Glowing Hover Effects */
@@ -87,36 +124,37 @@ st.markdown("""
     
     .kpi-card {
         flex: 1;
-        background: rgba(15, 23, 42, 0.55);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
-        padding: 1.75rem 1.5rem;
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.25) 0%, rgba(15, 23, 42, 0.45) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        border-radius: 20px;
+        padding: 2rem 1.75rem;
         text-align: left;
-        backdrop-filter: blur(16px);
+        backdrop-filter: blur(20px);
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     }
     
     .kpi-card:hover {
-        transform: translateY(-6px);
-        border-color: rgba(99, 102, 241, 0.4);
-        box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.25);
+        transform: translateY(-8px);
+        border-color: rgba(99, 102, 241, 0.3);
+        box-shadow: 0 30px 45px -15px rgba(99, 102, 241, 0.25);
     }
     
     .kpi-value {
-        font-size: 2.5rem;
+        font-size: 2.75rem;
         font-weight: 800;
         color: #ffffff;
         line-height: 1;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.02em;
     }
     
     .kpi-label {
         font-size: 0.8rem;
         font-weight: 600;
-        color: #94a3b8;
+        color: #64748b;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
     }
     
     /* Metric variations and color themes */
@@ -124,67 +162,67 @@ st.markdown("""
         color: #f87171;
     }
     .metric-detained:hover {
-        border-color: rgba(239, 68, 68, 0.4);
-        box-shadow: 0 20px 35px -10px rgba(239, 68, 68, 0.25);
+        border-color: rgba(239, 68, 68, 0.3);
+        box-shadow: 0 30px 45px -15px rgba(239, 68, 68, 0.25);
     }
     
     .metric-condone .kpi-value {
         color: #fbbf24;
     }
     .metric-condone:hover {
-        border-color: rgba(245, 158, 11, 0.4);
-        box-shadow: 0 20px 35px -10px rgba(245, 158, 11, 0.25);
+        border-color: rgba(245, 158, 11, 0.3);
+        box-shadow: 0 30px 45px -15px rgba(245, 158, 11, 0.25);
     }
     
     .metric-passed .kpi-value {
         color: #34d399;
     }
     .metric-passed:hover {
-        border-color: rgba(16, 185, 129, 0.4);
-        box-shadow: 0 20px 35px -10px rgba(16, 185, 129, 0.25);
+        border-color: rgba(16, 185, 129, 0.3);
+        box-shadow: 0 30px 45px -15px rgba(16, 185, 129, 0.25);
     }
     
     /* Custom tab buttons styling */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 12px;
-        background-color: rgba(15, 23, 42, 0.45);
+        gap: 16px;
+        background-color: rgba(15, 23, 42, 0.4);
         padding: 8px;
-        border-radius: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        margin-bottom: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        margin-bottom: 2rem;
     }
     
     .stTabs [data-baseweb="tab"] {
-        height: 46px;
+        height: 48px;
         white-space: pre-wrap;
         background-color: transparent;
-        border-radius: 10px;
+        border-radius: 12px;
         color: #94a3b8;
         font-weight: 600;
         font-size: 0.95rem;
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        padding: 0 20px;
+        padding: 0 24px;
         border: none !important;
     }
     
     .stTabs [data-baseweb="tab"]:hover {
         color: #f8fafc;
-        background-color: rgba(255, 255, 255, 0.04);
+        background-color: rgba(255, 255, 255, 0.03);
     }
     
     .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%) !important;
+        background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%) !important;
         color: #ffffff !important;
-        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 10px 20px rgba(59, 130, 246, 0.35);
     }
     
     /* Info Message boxes */
     .stAlert {
-        background-color: rgba(30, 41, 59, 0.45) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background-color: rgba(30, 41, 59, 0.35) !important;
+        border: 1px solid rgba(255, 255, 255, 0.06) !important;
         color: #e2e8f0 !important;
-        border-radius: 14px !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        border-radius: 16px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
     
     /* Premium Button & Download Button styles */
@@ -193,41 +231,41 @@ st.markdown("""
         color: white !important;
         font-weight: 600 !important;
         font-size: 0.95rem !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        padding: 0.65rem 1.75rem !important;
-        border-radius: 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        padding: 0.75rem 2rem !important;
+        border-radius: 14px !important;
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        box-shadow: 0 8px 15px rgba(37, 99, 235, 0.2) !important;
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25) !important;
         width: 100% !important;
     }
     
     div.stButton>button:hover, div.stDownloadButton>button:hover {
         transform: translateY(-3px) !important;
-        box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35) !important;
-        border-color: rgba(255, 255, 255, 0.25) !important;
+        box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
     }
     
     /* Input field styling */
     .stTextInput input, .stSelectbox select, .stDateInput input {
-        background-color: rgba(15, 23, 42, 0.5) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 12px !important;
+        background-color: rgba(15, 23, 42, 0.45) !important;
+        border: 1px solid rgba(255, 255, 255, 0.06) !important;
+        border-radius: 14px !important;
         color: #f8fafc !important;
-        padding: 0.5rem 1rem !important;
+        padding: 0.6rem 1.1rem !important;
         transition: all 0.25s ease !important;
     }
     
     .stTextInput input:focus, .stSelectbox select:focus, .stDateInput input:focus {
         border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25) !important;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
     }
     
     /* Highlight containers */
     .highlight-box {
-        background-color: rgba(99, 102, 241, 0.04);
-        border: 1px solid rgba(99, 102, 241, 0.12);
+        background-color: rgba(99, 102, 241, 0.03);
+        border: 1px solid rgba(99, 102, 241, 0.08);
         padding: 1.5rem;
-        border-radius: 14px;
+        border-radius: 16px;
         margin-bottom: 2rem;
     }
 </style>
