@@ -218,12 +218,62 @@ if 'students' not in st.session_state:
 with st.sidebar:
     st.markdown("### 📋 Configuration Panel")
     
-    # Metadata inputs
-    school = st.text_input("School / Department", "School of Computer Science & Engineering", help="Enter school/department name")
-    programme = st.text_input("Programme", "B.Tech. Computer Science & Engineering", help="Enter course/programme name")
-    semester = st.text_input("Semester", "IV", help="Enter Semester in Roman numerals")
-    exam_name = st.text_input("Exam Name", "End Semester Theory Examination, Summer 2026", help="University exam identifier")
-    report_date = st.date_input("Report Date", datetime.date.today())
+    # School / Department
+    school_options = [
+        "School of Computer Science & Engineering",
+        "School of Electrical & Electronics Engineering",
+        "School of Mechanical Engineering",
+        "School of Civil Engineering",
+        "School of Management",
+        "Custom (Type below)..."
+    ]
+    school_sel = st.selectbox("School / Department", options=school_options, index=0, help="Select or type school name")
+    if school_sel == "Custom (Type below)...":
+        school = st.text_input("Enter Custom School / Department", "")
+    else:
+        school = school_sel
+        
+    # Programme
+    prog_options = [
+        "B.Tech. Computer Science & Engineering",
+        "B.Tech. Computer Science & Engineering (AIML)",
+        "B.Tech. Information Technology",
+        "B.Tech. Electronics & Communication Engineering",
+        "Master of Computer Applications (MCA)",
+        "Master of Business Administration (MBA)",
+        "Custom (Type below)..."
+    ]
+    prog_sel = st.selectbox("Programme", options=prog_options, index=0, help="Select or type programme name")
+    if prog_sel == "Custom (Type below)...":
+        programme = st.text_input("Enter Custom Programme", "")
+    else:
+        programme = prog_sel
+        
+    # Semester
+    sem_options = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "Custom (Type below)..."]
+    sem_sel = st.selectbox("Semester", options=sem_options, index=3, help="Select or type semester")
+    if sem_sel == "Custom (Type below)...":
+        semester = st.text_input("Enter Custom Semester", "")
+    else:
+        semester = sem_sel
+        
+    # Exam Name
+    exam_options = [
+        "End Semester Theory Examination, Summer 2026",
+        "End Semester Practical Examination, Summer 2026",
+        "End Semester Theory Examination, Winter 2026",
+        "End Semester Practical Examination, Winter 2026",
+        "Make-up Examination, Summer 2026",
+        "Custom (Type below)..."
+    ]
+    exam_sel = st.selectbox("Exam Name", options=exam_options, index=0, help="Select or type exam identifier")
+    if exam_sel == "Custom (Type below)...":
+        exam_name = st.text_input("Enter Custom Exam Name", "")
+    else:
+        exam_name = exam_sel
+        
+    # Report Date
+    report_date = st.date_input("Report Date", datetime.date.today(), help="Select report publication date")
     
     st.markdown("---")
     st.markdown("### 📁 Upload Files")
