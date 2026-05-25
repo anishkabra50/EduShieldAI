@@ -219,6 +219,7 @@ with st.sidebar:
     st.markdown("### 📋 Configuration Panel")
     
     # Metadata inputs
+    school = st.text_input("School / Department", "School of Computer Science & Engineering", help="Enter school/department name")
     programme = st.text_input("Programme", "B.Tech. Computer Science & Engineering", help="Enter course/programme name")
     semester = st.text_input("Semester", "IV", help="Enter Semester in Roman numerals")
     exam_name = st.text_input("Exam Name", "End Semester Theory Examination, Summer 2026", help="University exam identifier")
@@ -389,6 +390,7 @@ if uploaded_files:
                 table2_data=table2_data,
                 table3a_data=table3a_data,
                 table3b_data=table3b_data,
+                school=school,
                 custom_template_path=selected_template_path if 'selected_template_path' in locals() else None
             )
             with col_d1:
@@ -429,7 +431,8 @@ if uploaded_files:
                 table1_data=table1_data,
                 table2_data=table2_data,
                 table3a_data=table3a_data,
-                table3b_data=table3b_data
+                table3b_data=table3b_data,
+                school=school
             )
             with col_d3:
                 st.download_button(

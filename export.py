@@ -40,7 +40,7 @@ def set_cell_text(cell, text, bold=False, font_name="Calibri", font_size=10, ali
         run.font.size = Pt(font_size)
         run.bold = bold
 
-def fill_docx_template(programme, semester, exam_name, date_str, table1_data, table2_data, table3a_data, table3b_data, custom_template_path=None):
+def fill_docx_template(programme, semester, exam_name, date_str, table1_data, table2_data, table3a_data, table3b_data, school="", custom_template_path=None):
     """
     Loads templates/detention_format.docx or a custom template, replaces metadata, fills all 4 tables,
     and returns docx file as bytes.
@@ -64,6 +64,9 @@ def fill_docx_template(programme, semester, exam_name, date_str, table1_data, ta
         elif "Date:" in p.text and ("dd/mm/yyyy" in p.text or "___" in p.text):
             p.text = p.text.replace("dd/mm/yyyy", date_str)
             p.text = p.text.replace("___________________________", date_str)
+            
+        if "School:" in p.text:
+            p.text = f"School: {school}"
             
         if "Programme:" in p.text and "Semester:" in p.text:
             # Format nicely
@@ -270,7 +273,7 @@ class NumberedCanvas(canvas.Canvas):
         self.line(54, 42, 612 - 54, 42)
         self.restoreState()
 
-def generate_pdf(programme, semester, exam_name, date_str, table1_data, table2_data, table3a_data, table3b_data):
+def generate_pdf(programme, semester, exam_name, date_str, table1_data, table2_data, table3a_data, table3b_data, school=""):
     """
     Generates a beautifully styled ReportLab PDF containing metadata and all 4 tables.
     Returns PDF file as bytes.
@@ -370,6 +373,7 @@ def generate_pdf(programme, semester, exam_name, date_str, table1_data, table2_d
     # Title & Header
     story.append(Paragraph("RAMDEOBABA UNIVERSITY, NAGPUR", title_style))
     story.append(Paragraph("DETENTION LIST", subtitle_style))
+    story.append(Paragraph(f"<b>School:</b> {school}", meta_style))
     story.append(Paragraph(f"<b>Exam Name:</b> {exam_name}", meta_style))
     story.append(Paragraph(f"<b>Date:</b> {date_str}", meta_style))
     story.append(Paragraph(f"<b>Programme:</b> {programme} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Semester:</b> {semester}", meta_style))
